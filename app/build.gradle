@@ -10,13 +10,13 @@ kapt {
 }
 
 android {
-    compileSdkVersion build_version.compileSdkVersion
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.mocha"
-        minSdkVersion build_version.minSdkVersion
-        targetSdkVersion build_version.targetSdkVersion
-        versionCode build_version.versionCode
-        versionName build_version.versionName
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -45,68 +45,73 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
+    aaptOptions {
+        cruncherEnabled false
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation files('libs/jsoup-1.11.3.jar')
 
-    implementation deps.kotlin.stdlib
-    testImplementation deps.junit
-    androidTestImplementation deps.atsl.runner
-    androidTestImplementation(deps.espresso.core, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.google.code.findbugs', module: 'jsr305'
-    })
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.1"
+//    androidTestImplementation(deps.espresso.core, {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+//    })
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
+    kapt "com.google.dagger:dagger-android-processor:2.15"
+    kapt "com.google.dagger:dagger-compiler:2.15"
 
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    implementation deps.multidex
+    implementation "com.google.dagger:dagger:2.15"
+    implementation "com.google.dagger:dagger-android:2.15"
+    implementation "com.google.dagger:dagger-android-support:2.15"
+    implementation "com.android.support:multidex:1.0.3"
 
-    implementation deps.support.appcompatV7
-    implementation deps.support.recyclerviewV7
-    implementation deps.support.cardviewV7
-    implementation deps.support.V4
-    implementation deps.support.design
-    implementation deps.lifecycle.extensions
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:recyclerview-v7:28.0.0"
+    implementation "com.android.support:cardview-v7:28.0.0"
+    implementation "com.android.support:support-v4:28.0.0"
+    implementation "com.android.support:design:28.0.0"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 
-    implementation deps.constraint
-    implementation deps.BottomNavigationView
-    implementation deps.EasyStatueView
-    implementation deps.ScanLib
-    implementation deps.AppExecutor
-    implementation deps.okHttp
-    implementation deps.Cookie
-    implementation deps.Retrofit
-    implementation deps.converter_gson
-    implementation deps.adapter_rxjava
-    implementation deps.RxJava
-    implementation deps.rxandroid
+    implementation "com.android.support.constraint:constraint-layout:1.1.3"
+//    implementation deps.BottomNavigationView
+//    implementation deps.EasyStatueView
+//    implementation deps.ScanLib
+//    implementation deps.AppExecutor
+    implementation "com.squareup.okhttp3:okhttp:3.11.0"
+    implementation "com.github.franmontiel:PersistentCookieJar:v1.0.1"
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.2"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
     /*工具类*/
-    implementation deps.utilcode
+    implementation "com.blankj:utilcode:1.16.1"
 
-    implementation deps.flexbox
+    implementation "com.google.android:flexbox:1.0.0"
 
-    implementation deps.glide.lib
-    kapt deps.glide.compiler
+    implementation "com.github.bumptech.glide:glide:4.8.0"
+    kapt "com.github.bumptech.glide:compiler:4.8.0"
 
-    implementation deps.bigImage.bigImage
-    implementation deps.bigImage.glide
-    implementation deps.bigImage.factory
+    implementation "com.github.piasy:BigImageViewer:1.5.6"
+    implementation "com.github.piasy:GlideImageLoader:1.5.6"
+    implementation "com.github.piasy:GlideImageViewFactory:1.5.6"
 
-    implementation deps.status_bar_compat
+    implementation "com.githang:status-bar-compat:0.7"
 
-    implementation deps.circleindicator
+    implementation "com.romandanylyk:pageindicatorview:1.0.2"
 
-    implementation deps.gsy.java
-    implementation deps.gsy.armv7
-    implementation deps.flowlayout
+    implementation "com.shuyu:gsyVideoPlayer-java:6.0.1"
+    implementation "com.shuyu:gsyVideoPlayer-armv7a:6.0.1"
+    implementation "com.hyman:flowlayout-lib:1.1.2"
 
-    implementation deps.room.runtime
-    kapt deps.room.compiler
-    implementation deps.room.rxjava2
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
 }
