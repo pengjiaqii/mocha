@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.example.mocha.R
 import com.example.mocha.adpter.GirlRvAdapter
 import com.example.mocha.base.BaseFragment
@@ -72,9 +73,27 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
                         pageIndex++
                         girlViewModel.requestGirlImageData(GirlApiService.TYPE_GIRL, pageIndex)
                     }
+                }else if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    binding.uptoListTop.show()
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && binding.uptoListTop.visibility == View.VISIBLE) {
+                    //向上上拉隐藏
+                    binding.uptoListTop.hide()
+                } else if (dy < 0 && binding.uptoListTop.visibility != View.VISIBLE) {
+                    //向下下滑显示
+                    binding.uptoListTop.show()
                 }
             }
         })
+
+        //点击滑动到第一屏顶部
+        binding.uptoListTop.setOnClickListener {
+            binding.girlRv.smoothScrollToPosition(0)
+        }
     }
 
     override fun initData() {
@@ -88,10 +107,7 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
         })
         binding.girlRv.layoutManager = GridLayoutManager(context!!, spanCount)
         binding.girlRv.adapter = girlRvAdapter
-
         //viewmodel，网络请求
-
-
         //获取MutableLiveData ，并“观察”？这个词不知道准不准确
         girlViewModel.getData().observe(this, object : Observer<BaseStatus<GirlImgListData>> {
             override fun onChanged(t: BaseStatus<GirlImgListData>?) {

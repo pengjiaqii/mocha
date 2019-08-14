@@ -3,8 +3,8 @@ package com.example.mocha.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.mocha.net.BaseStatus
+import com.example.mocha.net.api.ApiUtil
 import com.example.mocha.net.response.GirlImgListData
-import com.example.mocha.net.retrofit.RetrofitCreater
 import com.example.mocha.net.subscriber.BaseGirlSubScriber
 
 /**
@@ -26,7 +26,7 @@ class GirlViewModel : ViewModel() {
 
     //网络请求获取数据，网络请求这一块的主要功能就是放在ViewModel里面
     fun requestGirlImageData(type: String, pageNum: Int) {
-        RetrofitCreater.getGirlRequest()?.getGrilsImage(type, pageNum, object : BaseGirlSubScriber() {
+        ApiUtil.getGrilsImage(type, pageNum, object : BaseGirlSubScriber() {
             override fun onStart() {
                 girlData.value = BaseStatus.loading(null)
             }

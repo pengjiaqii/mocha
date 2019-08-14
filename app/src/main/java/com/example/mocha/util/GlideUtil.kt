@@ -1,8 +1,8 @@
 package com.example.mocha.util
 
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.example.mocha.R
 
 /**
  * 作者 : pengjiaqi
@@ -11,10 +11,15 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
  * 功能 :
  */
 object GlideUtil {
+    /**
+     * 加载普通图像
+     */
     fun loadNormalImg(imageView: ImageView, url:String){
-        Glide.with(imageView.context)
-            .load(url)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .into(imageView)
+        GlideApp.with(imageView.context)
+                .load(url)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.drawable.default_img)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageView)
     }
 }

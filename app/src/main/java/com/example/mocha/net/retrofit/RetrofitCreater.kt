@@ -1,11 +1,15 @@
 package com.example.mocha.net.retrofit
 
 import com.example.mocha.MochaApplication
+import com.example.mocha.net.api.GirlApiService
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.safframework.http.interceptor.LoggingInterceptor
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -20,11 +24,11 @@ object RetrofitCreater {
      */
     private const val DEFAULT_TIMEOUT = 15L
 
-    private val mOkHttpClient: OkHttpClient
 
-    private var girlRequest: GirlOkhttpClient? = null
+    private var retrofit: Retrofit
 
     init {
+        //okhttp
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(MochaApplication.INSTANCE))
         val okHttpBuilder = OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -42,14 +46,30 @@ object RetrofitCreater {
 
         okHttpBuilder.addInterceptor(loggingInterceptor)
 
-        mOkHttpClient = okHttpBuilder.build()
+        //retrofit
+        retrofit = Retrofit.Builder()
+                .client(okHttpBuilder.build())
+                .baseUrl(GirlApiService.baseUrl)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
 
     }
 
-    fun getGirlRequest(): GirlOkhttpClient? {
-        if(girlRequest == null){
-            girlRequest = GirlOkhttpClient(mOkHttpClient)
-        }
-        return girlRequest
-    }
+
+    /**
+     * 获取Retrofit对象
+     *
+     * @return
+     */
+    fun getRetrofit(): Retrofit = retrofit
+
+
+//    fun getGirlRequest(): GirlOkhttpClient? {
+//        if (girlRequest == null) {
+//            girlRequest = GirlOkhttpClient(mOkHttpClient)
+//        }
+//        return girlRequest
+//    }
 }
