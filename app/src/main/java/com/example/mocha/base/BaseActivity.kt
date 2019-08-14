@@ -3,7 +3,6 @@ package com.example.baselib
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 
 /**
@@ -14,14 +13,15 @@ import android.support.v7.app.AppCompatActivity
  */
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
+    val TAG = this.javaClass.name
 
     lateinit var binding: T
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initEarliest(savedInstanceState)
         //绑定布局
-        binding = DataBindingUtil.setContentView<T>(this, getLayoutId())
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
         initData(savedInstanceState)
         initListener()
     }

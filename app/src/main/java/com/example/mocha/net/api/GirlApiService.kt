@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
 
-interface GirlApi {
+interface GirlApiService {
 
     companion object {
         @JvmField
@@ -16,7 +16,12 @@ interface GirlApi {
         val TYPE_GIRL = "jandan.get_ooxx_comments"
     }
 
+    /**
+     * 获取详情信息
+     */
     @GET
-    fun getDetailData(@Url url: String, @Query("oxwlxojflwblxbsapi") type: String,
+    fun getDetailData(
+            @Url url: String,
+            @Query("oxwlxojflwblxbsapi") type: String,
             @Query("page") page: Int): Flowable<GirlImgListData>
 }

@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
     </data>
-    <LinearLayout
-            android:orientation="vertical"
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
                 android:id="@+id/girl_tv_title"
-                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:background="@android:color/holo_blue_light"
                 android:gravity="center"
-                android:text="图片专区"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"/>
-        <com.winton.librarystatue.StatueView
-                android:id="@+id/girl_sv"
+                android:text="图片"
+                android:textColor="@android:color/white" />
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/girl_srl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <android.support.v4.widget.SwipeRefreshLayout
-                    android:id="@+id/girl_srl"
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/girl_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                <android.support.v7.widget.RecyclerView
-                        android:id="@+id/girl_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
 
                 </android.support.v7.widget.RecyclerView>
             </android.support.v4.widget.SwipeRefreshLayout>
+        </LinearLayout>
 
-        </com.winton.librarystatue.StatueView>
-    </LinearLayout>
+        <iammert.com.library.ConnectionStatusView
+            android:id="@+id/status_view"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:dismissOnComplete="true" />
+    </FrameLayout>
 </layout>

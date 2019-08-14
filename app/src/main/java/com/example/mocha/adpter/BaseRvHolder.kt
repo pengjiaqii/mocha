@@ -12,7 +12,8 @@ import android.view.View
  */
 open class BaseRvHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-    lateinit var binding: ViewDataBinding
+    lateinit var binding:ViewDataBinding
+
 
     open fun bind(variableId:Int,value:Any){
         binding.setVariable(variableId,value)

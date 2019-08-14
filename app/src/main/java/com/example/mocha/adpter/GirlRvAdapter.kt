@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.mocha.R
 import com.example.mocha.databinding.ItemFragGirlBinding
+import com.example.mocha.net.response.GirlImgComment
 import com.example.mocha.util.GlideUtil
 
 /**
@@ -21,7 +22,7 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
 
     private var onItemClickListener: OnItemClickListener? = null
 
-    private var mData: ArrayList<String> = ArrayList()
+    private var mData: ArrayList<GirlImgComment> = ArrayList()
 
     /**
      * itemview的点击事件
@@ -33,7 +34,7 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
     /**
      * 更新数据
      */
-    fun update(data: ArrayList<String>) {
+    fun update(data: ArrayList<GirlImgComment>) {
         mData.clear()
         mData.addAll(data)
         notifyDataSetChanged()
@@ -42,7 +43,7 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
     /**
      * 添加数据
      */
-    fun add(data: ArrayList<String>) {
+    fun add(data: ArrayList<GirlImgComment>) {
         val oldSize = mData.size
         mData.addAll(data)
         notifyItemRangeInserted(oldSize, mData.size)
@@ -51,14 +52,14 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = DataBindingUtil.inflate<ItemFragGirlBinding>(
-            LayoutInflater.from(mContext),
-            R.layout.item_frag_girl,
-            parent,
-            false
+                LayoutInflater.from(mContext),
+                R.layout.item_frag_girl,
+                parent,
+                false
         )
         val holder = VH(binding)
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(holder.itemView.tag as String)
+            onItemClickListener?.onItemClick(holder.itemView.tag as GirlImgComment)
         }
         return holder
     }
@@ -71,14 +72,18 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
     }
 
 
-    class VH(binding: ViewDataBinding) : BaseRvHolder(binding.root) {
+    class VH : BaseRvHolder {
 
-        fun bindData(item: String) {
-            binding.let {
-                if (it is ItemFragGirlBinding) {
-                    it.girlAuthor.text = "作者：$item"
-                    it.girlNum.text = "含${item}图"
-                    GlideUtil.loadNormalImg(it.girlImg, item)
+        constructor(binding: ViewDataBinding) : super(binding.root){
+            this.binding = binding
+        }
+
+        fun bindData(item: GirlImgComment) {
+            binding.run {
+                if (this is ItemFragGirlBinding) {
+                    this.girlAuthor.text = "作者：${item.comment_author}"
+                    this.girlNum.text = "含${item.pics.size}图"
+                    GlideUtil.loadNormalImg(this.girlImg, item.pics[0])
                 }
             }
 
@@ -87,6 +92,6 @@ class GirlRvAdapter(private val mContext: Context) : RecyclerView.Adapter<GirlRv
 
 
     interface OnItemClickListener {
-        fun onItemClick(item: String)
+        fun onItemClick(item: GirlImgComment)
     }
 }
