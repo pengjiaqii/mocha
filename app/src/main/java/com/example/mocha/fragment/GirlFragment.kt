@@ -7,15 +7,16 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.example.mocha.R
+import com.example.mocha.activity.ShowImageActivity
 import com.example.mocha.adpter.GirlRvAdapter
 import com.example.mocha.base.BaseFragment
-import com.example.mocha.databinding.FragmentGirlBinding
 import com.example.mocha.net.BaseStatus
 import com.example.mocha.net.api.GirlApiService
 import com.example.mocha.net.response.GirlImgComment
 import com.example.mocha.net.response.GirlImgListData
 import com.example.mocha.viewmodel.GirlViewModel
 import iammert.com.library.Status
+import kotlinx.android.synthetic.main.fragment_girl.*
 
 /**
  * 作者 : pengjiaqi
@@ -23,7 +24,7 @@ import iammert.com.library.Status
  * 日期 : 2019/8/13 17:06
  * 功能 :
  */
-class GirlFragment : BaseFragment<FragmentGirlBinding>() {
+class GirlFragment : BaseFragment() {
 
     private val girlViewModel: GirlViewModel
             by lazy { ViewModelProviders.of(this).get(GirlViewModel::class.java) }
@@ -54,45 +55,48 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
 //    }
 
     override fun initListener() {
-        binding.girlSrl.setOnRefreshListener {
+        //下拉刷新
+        girl_srl.setOnRefreshListener {
             pageIndex = 1
-            showRefresh =true
+            showRefresh = true
             girlViewModel.requestGirlImageData(GirlApiService.TYPE_GIRL, pageIndex)
         }
-        binding.girlRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            var lastVisibleItemPos = 0
-            var firstVisibleItemPos = 0
+        girl_rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            var lastVisibleItemPos = 0
+//            var firstVisibleItemPos = 0
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && !isLastData) {
-                    //滑倒rv最后一行的时候，开启加载更多
-                    lastVisibleItemPos = (recyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-                    firstVisibleItemPos = (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
-                    if (firstVisibleItemPos != 0 && lastVisibleItemPos >= girlRvAdapter.itemCount - spanCount * 2) {
-                        pageIndex++
-                        girlViewModel.requestGirlImageData(GirlApiService.TYPE_GIRL, pageIndex)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //静止的时候显示滑动到顶部按钮
+                    upto_list_top.show()
+                    if (!isLastData) {
+                        //静止状态，并且滑到rv最后一行的时候，开启加载更多
+                        val lastVisibleItemPos = (recyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+                        val firstVisibleItemPos = (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
+                        if (firstVisibleItemPos != 0 && lastVisibleItemPos >= girlRvAdapter.itemCount - spanCount * 2) {
+                            pageIndex++
+                            girlViewModel.requestGirlImageData(GirlApiService.TYPE_GIRL, pageIndex)
+                        }
                     }
-                }else if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    binding.uptoListTop.show()
                 }
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0 && binding.uptoListTop.visibility == View.VISIBLE) {
+                if (dy > 0 && upto_list_top.visibility == View.VISIBLE) {
                     //向上上拉隐藏
-                    binding.uptoListTop.hide()
-                } else if (dy < 0 && binding.uptoListTop.visibility != View.VISIBLE) {
+                    upto_list_top.hide()
+                } else if (dy < 0 && upto_list_top.visibility != View.VISIBLE) {
                     //向下下滑显示
-                    binding.uptoListTop.show()
+                    upto_list_top.show()
                 }
             }
         })
 
         //点击滑动到第一屏顶部
-        binding.uptoListTop.setOnClickListener {
-            binding.girlRv.smoothScrollToPosition(0)
+        upto_list_top.setOnClickListener {
+            girl_rv.smoothScrollToPosition(0)
         }
     }
 
@@ -102,11 +106,13 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
         girlRvAdapter = GirlRvAdapter(context!!)
         girlRvAdapter.setOnItemViewClickListener(object : GirlRvAdapter.OnItemClickListener {
             override fun onItemClick(item: GirlImgComment) {
+                //
+                ShowImageActivity.actionTo(activity!!, item.pics as ArrayList<String>)
 
             }
         })
-        binding.girlRv.layoutManager = GridLayoutManager(context!!, spanCount)
-        binding.girlRv.adapter = girlRvAdapter
+        girl_rv.layoutManager = GridLayoutManager(context!!, spanCount)
+        girl_rv.adapter = girlRvAdapter
         //viewmodel，网络请求
         //获取MutableLiveData ，并“观察”？这个词不知道准不准确
         girlViewModel.getData().observe(this, object : Observer<BaseStatus<GirlImgListData>> {
@@ -115,13 +121,13 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
                     BaseStatus.LOADING -> {
                         //loading
                         if (pageIndex == 1 && !showRefresh) {
-                            binding.statusView.setStatus(Status.LOADING)
+                            status_view.setStatus(Status.LOADING)
                         }
                     }
                     BaseStatus.SUCCESS -> {
-                        binding.girlSrl.isRefreshing = false
+                        girl_srl.isRefreshing = false
                         //请求成功
-                        binding.statusView.setStatus(Status.COMPLETE)
+                        status_view.setStatus(Status.COMPLETE)
                         if (pageIndex == 1) {
                             //第一页
                             t.data?.comments?.let {
@@ -139,16 +145,16 @@ class GirlFragment : BaseFragment<FragmentGirlBinding>() {
                         }
                     }
                     BaseStatus.ERROR -> {
-                        binding.girlSrl.isRefreshing = false
+                        girl_srl.isRefreshing = false
                         //请求失败
                         if (pageIndex == 1) {
-                            binding.statusView.setStatus(Status.ERROR)
+                            status_view.setStatus(Status.ERROR)
                         }
                     }
                 }
             }
         })
-        //正在加载数据的方法
+        //网络请求发起
         girlViewModel.requestGirlImageData(GirlApiService.TYPE_GIRL, pageIndex)
     }
 

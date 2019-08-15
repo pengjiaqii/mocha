@@ -1,15 +1,20 @@
 package com.example.mocha
 
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.transition.Explode
+import android.view.Window
+import android.view.WindowManager
 import com.blankj.utilcode.util.ToastUtils
 import com.example.baselib.BaseActivity
-import com.example.mocha.databinding.ActivityMainBinding
 import com.example.mocha.fragment.GirlFragment
+import com.example.mocha.fragment.NewsFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity() {
 
 //    private lateinit var mNavView: BottomNavigationView
 
@@ -26,6 +31,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private var currentFragmentIndex = -1
 
+    override fun initEarliest() {
+        super.initEarliest()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            window.enterTransition = Explode()
+            window.exitTransition = Explode()
+        }
+    }
+
+
+
     override fun initData(savedInstanceState: Bundle?) {
 //        mNavView = binding.navView
         initFragments()
@@ -38,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      */
     private fun initFragments() {
         fragments = ArrayList<TagFragment>().apply {
-            add(TagFragment("news", GirlFragment.newInstance(null)))
+            add(TagFragment("news", NewsFragment.newInstance(null)))
             add(TagFragment("girl", GirlFragment.newInstance(null)))
             add(TagFragment("mine", GirlFragment.newInstance(null)))
         }
@@ -54,8 +73,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initListener() {
-        binding.bottomNavView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        binding.bottomNavView.selectedItemId = binding.bottomNavView.menu.getItem(0).itemId
+        bottom_nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        bottom_nav_view.selectedItemId = bottom_nav_view.menu.getItem(0).itemId
     }
 
     override fun getLayoutId(): Int = R.layout.activity_main

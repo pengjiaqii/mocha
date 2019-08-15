@@ -6,6 +6,7 @@ import com.example.mocha.net.BaseStatus
 import com.example.mocha.net.api.ApiUtil
 import com.example.mocha.net.response.GirlImgListData
 import com.example.mocha.net.subscriber.BaseGirlSubScriber
+import com.example.mocha.repository.GirlRepository
 
 /**
  * 作者 : pengjiaqi
@@ -17,7 +18,7 @@ class GirlViewModel : ViewModel() {
 
     //LiveData
     private var girlData: MutableLiveData<BaseStatus<GirlImgListData>> = MutableLiveData()
-
+    private val repository by lazy { GirlRepository() }
     //获取数据的方法，给外部调用
     fun getData(): MutableLiveData<BaseStatus<GirlImgListData>> {
         return girlData
@@ -26,7 +27,7 @@ class GirlViewModel : ViewModel() {
 
     //网络请求获取数据，网络请求这一块的主要功能就是放在ViewModel里面
     fun requestGirlImageData(type: String, pageNum: Int) {
-        ApiUtil.getGrilsImage(type, pageNum, object : BaseGirlSubScriber() {
+        ApiUtil.getGirlsImage(type, pageNum, object : BaseGirlSubScriber() {
             override fun onStart() {
                 girlData.value = BaseStatus.loading(null)
             }
@@ -40,6 +41,13 @@ class GirlViewModel : ViewModel() {
             }
 
         })
+
+//        launch {
+//            val result = withContext(Dispatchers.IO) {
+//                repository.getGirlsImage(type, pageNum)
+//            }
+//        }
+
     }
 
 }

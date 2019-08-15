@@ -17,11 +17,13 @@ interface GirlApiService {
     }
 
     /**
-     * 获取详情信息
+     * 获取
      */
     @GET
     fun getDetailData(
             @Url url: String,
             @Query("oxwlxojflwblxbsapi") type: String,
             @Query("page") page: Int): Flowable<GirlImgListData>
+
+
 }

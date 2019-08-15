@@ -1,7 +1,5 @@
 package com.example.baselib
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
@@ -11,17 +9,16 @@ import android.support.v7.app.AppCompatActivity
  * 日期 : 2019/8/13 13:53
  * 功能 :
  */
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     val TAG = this.javaClass.name
 
-    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initEarliest(savedInstanceState)
+        initEarliest()
         //绑定布局
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        setContentView(getLayoutId())
         initData(savedInstanceState)
         initListener()
     }
@@ -40,7 +37,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
      * 在布局之前可以去做的操作
      * 可重写可不重写，没定义成abstract
      */
-    open fun initEarliest(savedInstanceState: Bundle?) {
+    open fun initEarliest() {
 
     }
 
