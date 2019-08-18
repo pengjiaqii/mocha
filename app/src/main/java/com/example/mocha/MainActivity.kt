@@ -1,5 +1,7 @@
 package com.example.mocha
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -31,6 +33,16 @@ class MainActivity : BaseActivity() {
      */
     private var currentFragmentIndex = -1
 
+
+    companion object {
+
+
+        fun actionTo(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+
+    }
+
     override fun initEarliest() {
         super.initEarliest()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -42,7 +54,6 @@ class MainActivity : BaseActivity() {
             window.exitTransition = Explode()
         }
     }
-
 
 
     override fun initData(savedInstanceState: Bundle?) {

@@ -8,8 +8,8 @@ import io.reactivex.FlowableSubscriber
 import org.reactivestreams.Subscription
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 9:40
  * 功能 : 一般如果自己的公司项目的话，接口统一规范的话，这个BaseSubscriber就只用一个就行了，HttpResult<T>
  *     但是这里是开放api,返回都各不相同

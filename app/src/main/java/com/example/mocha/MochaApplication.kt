@@ -10,8 +10,8 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 13:50
  * 功能 :
  */

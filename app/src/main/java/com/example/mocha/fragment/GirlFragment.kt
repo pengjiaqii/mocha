@@ -19,8 +19,8 @@ import iammert.com.library.Status
 import kotlinx.android.synthetic.main.fragment_girl.*
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/13 17:06
  * 功能 :
  */

@@ -10,8 +10,8 @@ import com.example.mocha.R
 import com.example.mocha.util.GlideUtil
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/15 10:08
  * 功能 : viewpager 的adapter
  */

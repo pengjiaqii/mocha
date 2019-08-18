@@ -1,8 +1,8 @@
 package com.example.mocha.net
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/13 18:47
  * 功能 : 基础数据类，封装了数据，请求成功与否状态，错误信息
  */

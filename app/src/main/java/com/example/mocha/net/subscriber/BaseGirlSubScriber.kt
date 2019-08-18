@@ -7,8 +7,8 @@ import io.reactivex.FlowableSubscriber
 import org.reactivestreams.Subscription
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 9:40
  * 功能 :
  */

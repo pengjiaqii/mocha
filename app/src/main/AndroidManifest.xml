@@ -16,21 +16,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.GoodsDetailActivity"></activity>
         <activity
-            android:name=".activity.WebViewActivity"
-            android:process=":mywebview" />
-        <activity
-            android:name=".activity.ShowImageActivity"
-            android:theme="@style/MyTheme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:process=":mywebview" />
+        <activity
+            android:name=".activity.ShowImageActivity"
+            android:theme="@style/MyTheme.AppCompat.Light.NoActionBar.FullScreen" />
     </application>
 
 </manifest>

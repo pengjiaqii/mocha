@@ -12,8 +12,8 @@ import com.example.mocha.net.response.GirlImgComment
 import com.example.mocha.util.GlideUtil
 
 /**
- * 作者 : pengjiaqi
- * 邮箱 : pengjiaqi@richinfo.cn
+ * 作者 : Mocha
+ * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/13 17:29
  * 功能 :
  */
