@@ -8,7 +8,7 @@ import io.reactivex.FlowableSubscriber
 import org.reactivestreams.Subscription
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 9:40
  * 功能 : 一般如果自己的公司项目的话，接口统一规范的话，这个BaseSubscriber就只用一个就行了，HttpResult<T>
@@ -23,7 +23,7 @@ abstract class BaseArticleSubscriber : FlowableSubscriber<ArticleStatus> {
     }
 
     override fun onSubscribe(s: Subscription) {
-        Log.e("jade10", "开始请求")
+        Log.d("jade10", "开始请求")
         mSubscription = s
         //开始请求的方法，给子类去实现的
         onStart()

@@ -22,7 +22,7 @@ class SplashActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        Handler().postDelayed({ MainActivity.actionTo(this@SplashActivity) }, 2000)
+        Handler().postDelayed({ MainActivity.actionTo(this@SplashActivity) }, 1000)
 
     }
 

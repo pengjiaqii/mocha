@@ -17,7 +17,7 @@ import iammert.com.library.Status
 import kotlinx.android.synthetic.main.fragment_news.*
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/15 13:12
  * 功能 :

@@ -10,19 +10,19 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 13:50
  * 功能 :
  */
-class MochaApplication:Application() {
+class mochaApplication : Application() {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     companion object {
 
-        var INSTANCE:MochaApplication by Delegates.notNull()
+        var INSTANCE: mochaApplication by Delegates.notNull()
         var mUIHandler: Handler by Delegates.notNull()
 
     }

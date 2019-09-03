@@ -5,7 +5,7 @@ import com.bumptech.glide.module.AppGlideModule
 
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 18:31
  * 功能 :

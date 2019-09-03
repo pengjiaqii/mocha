@@ -7,7 +7,7 @@ import io.reactivex.FlowableSubscriber
 import org.reactivestreams.Subscription
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 9:40
  * 功能 :
@@ -22,7 +22,7 @@ abstract class BaseGirlSubScriber:FlowableSubscriber<GirlImgListData> {
     }
 
     override fun onSubscribe(s: Subscription) {
-        Log.e("jade10","开始请求")
+        Log.v("jade10", "开始请求")
         mSubscription = s
         //开始请求的方法，给子类去实现的
         onStart()

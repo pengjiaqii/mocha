@@ -12,6 +12,7 @@ import android.view.WindowManager
 import com.blankj.utilcode.util.ToastUtils
 import com.example.baselib.BaseActivity
 import com.example.mocha.fragment.GirlFragment
+import com.example.mocha.fragment.GoodsListFragment
 import com.example.mocha.fragment.NewsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -70,7 +71,7 @@ class MainActivity : BaseActivity() {
         fragments = ArrayList<TagFragment>().apply {
             add(TagFragment("news", NewsFragment.newInstance(null)))
             add(TagFragment("girl", GirlFragment.newInstance(null)))
-            add(TagFragment("mine", GirlFragment.newInstance(null)))
+            add(TagFragment("mine", GoodsListFragment.newInstance(null)))
         }
 
     }

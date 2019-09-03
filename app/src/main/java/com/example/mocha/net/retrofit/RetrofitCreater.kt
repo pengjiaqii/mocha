@@ -1,6 +1,6 @@
 package com.example.mocha.net.retrofit
 
-import com.example.mocha.MochaApplication
+import com.example.mocha.mochaApplication
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/14 13:38
  * 功能 :
@@ -33,7 +33,7 @@ object RetrofitCreater {
 
     init {
         //okhttp
-        val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(MochaApplication.INSTANCE))
+        val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(mochaApplication.INSTANCE))
 
 
         val loggingInterceptor = LoggingInterceptor.Builder()

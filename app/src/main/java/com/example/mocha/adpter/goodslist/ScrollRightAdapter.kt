@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.mocha.R
+import com.example.mocha.data.StudentEntity
 
 /**
- * 作者 : Mocha
+ * 作者 : mocha
  * 邮箱 : robotjiaqi@163.com
  * 日期 : 2019/8/16 0016 21:49
  * 功能 :
  */
-class ScrollRightAdapter(private val mContext: Context, private var mDatas: ArrayList<String>)
+class ScrollRightAdapter(private val mContext: Context, private var mDatas: ArrayList<StudentEntity>)
     : RecyclerView.Adapter<ScrollRightAdapter.ScrollRightViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ScrollRightViewHolder {
@@ -25,7 +26,7 @@ class ScrollRightAdapter(private val mContext: Context, private var mDatas: Arra
     }
 
     override fun onBindViewHolder(scrollRightViewHolder: ScrollRightViewHolder, i: Int) {
-
+        scrollRightViewHolder.right_text.text = mDatas[i].name
     }
 
     override fun getItemCount(): Int = mDatas.size
