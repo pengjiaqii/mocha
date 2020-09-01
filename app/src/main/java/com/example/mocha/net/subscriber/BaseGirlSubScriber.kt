@@ -12,7 +12,7 @@ import org.reactivestreams.Subscription
  * 日期 : 2019/8/14 9:40
  * 功能 :
  */
-abstract class BaseGirlSubScriber:FlowableSubscriber<GirlImgListData> {
+abstract class BaseGirlSubScriber : FlowableSubscriber<GirlImgListData> {
 
 
     private lateinit var mSubscription: Subscription
@@ -26,22 +26,22 @@ abstract class BaseGirlSubScriber:FlowableSubscriber<GirlImgListData> {
         mSubscription = s
         //开始请求的方法，给子类去实现的
         onStart()
-        if(!NetworkUtils.isConnected()){
+        if (!NetworkUtils.isConnected()) {
             mSubscription.cancel()
             onFail("请检查您的网络连接")
-        }else{
+        } else {
             mSubscription.request(Long.MAX_VALUE)
         }
     }
 
     override fun onNext(data: GirlImgListData) {
-        Log.e("jade10","data--->$data")
-        if("ok" == data.status) onSuccess(data) else onFail("数据异常")
+        Log.e("jade10", "data--->$data")
+        if ("ok" == data.status) onSuccess(data) else onFail("数据异常")
     }
 
     override fun onError(t: Throwable?) {
         onFail("网络请求服务异常")
-        Log.e("jade10",t.toString())
+        Log.e("jade10", t.toString())
     }
 
     /**

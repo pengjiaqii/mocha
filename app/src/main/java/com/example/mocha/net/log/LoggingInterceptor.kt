@@ -1,5 +1,6 @@
-package com.safframework.http.interceptor
+package com.example.mocha.net.log
 
+import com.safframework.http.interceptor.Logger
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.MediaType
@@ -9,7 +10,7 @@ import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
 
-class LoggingInterceptor private constructor(private val builder: LoggingInterceptor.Builder) : Interceptor {
+class LoggingInterceptor private constructor(private val builder: Builder) : Interceptor {
 
     private val isDebug: Boolean
     private val charset: Charset
