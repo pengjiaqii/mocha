@@ -5,26 +5,25 @@ import java.io.UnsupportedEncodingException;
 public class MyClass {
 
 
-
     public static void main(String[] args) {
-        System.out.println((SN));
-        String encrypt_str = encryptStr(SN);
-        System.out.println(encrypt_str);
-        String decrypt_str = decryptStr(encrypt_str);
-        System.out.println(decrypt_str);
-
-
-        System.out.println("H7118231204300023");
-        encrypt_str = encryptStr("H7118231204300023");
-        System.out.println(encrypt_str);
-        decrypt_str = decryptStr(encrypt_str);
-        System.out.println(decrypt_str);
+        //                System.out.println((SN));
+        //                String encrypt_str = encryptStr(SN);
+        //                System.out.println(encrypt_str);
+        //                String decrypt_str = decryptStr(encrypt_str);
+        //                System.out.println(decrypt_str);
         //
-//        System.out.println((PACKAGE));
-//        encrypt_str = encryptStr(PACKAGE);
-//        System.out.println(encrypt_str);
-//        decrypt_str = decryptStr(encrypt_str);
-//        System.out.println(decrypt_str);
+        //
+        //        System.out.println("H7118231204300023");
+        //        encrypt_str = encryptStr("H7118231204300023");
+        //        System.out.println(encrypt_str);
+        //        decrypt_str = decryptStr(encrypt_str);
+        //        System.out.println(decrypt_str);
+        //
+        //        System.out.println((PACKAGE));
+        //        encrypt_str = encryptStr(PACKAGE);
+        //        System.out.println(encrypt_str);
+        //        decrypt_str = decryptStr(encrypt_str);
+        //        System.out.println(decrypt_str);
         //
         //            encrypt_str = encryptStr(PACKAGE2);
         //            System.out.println(encrypt_str);
@@ -36,49 +35,69 @@ public class MyClass {
         //            decrypt_str = decryptStr(encrypt_str);
         //            System.out.println(decrypt_str);
 
-//        System.out.println((PACKAGE4));
-//        encrypt_str = encryptStr(PACKAGE4);
-//        System.out.println(encrypt_str);
-//        decrypt_str = decryptStr(encrypt_str);
-//        System.out.println(decrypt_str);
+        //        System.out.println((PACKAGE4));
+        //        encrypt_str = encryptStr(PACKAGE4);
+        //        System.out.println(encrypt_str);
+        //        decrypt_str = decryptStr(encrypt_str);
+        //        System.out.println(decrypt_str);
 
 
-//        System.out.println((PACKAGE5));
-//        encrypt_str = encryptStr(PACKAGE5);
-//        System.out.println(encrypt_str);
-//        decrypt_str = decryptStr(encrypt_str);
-//        System.out.println(decrypt_str);
+        //        System.out.println((PACKAGE5));
+        //        encrypt_str = encryptStr(PACKAGE5);
+        //        System.out.println(encrypt_str);
+        //        decrypt_str = decryptStr(encrypt_str);
+        //        System.out.println(decrypt_str);
 
 
-//        System.out.println((PACKAGE6));
-//        encrypt_str = encryptStr(PACKAGE6);
-//        System.out.println(encrypt_str);
-//        decrypt_str = decryptStr(encrypt_str);
-//        System.out.println(decrypt_str);
+        //                System.out.println((PACKAGE5));
+        //                String encrypt_str = encryptStr(PACKAGE5);
+        //                System.out.println(encrypt_str);
+        //                String decrypt_str = decryptStr(encrypt_str);
+        //                System.out.println(decrypt_str);
+        //
 
-        System.out.println((PACKAGE6));
-        encrypt_str = encryptStr(PACKAGE6);
+        //        System.out.println((PACKAGE6));
+        //        String encrypt_str = encryptStr(PACKAGE6);
+        //        System.out.println(encrypt_str);
+        //        String decrypt_str = decryptStr(encrypt_str);
+        //        System.out.println(decrypt_str);
+
+        System.out.println((PACKAGE7));
+        String encrypt_str = encryptStr(PACKAGE7);
+        System.out.println(encrypt_str);
+        String decrypt_str = decryptStr(encrypt_str);
+        System.out.println(decrypt_str);
+
+        System.out.println((PACKAGE8));
+        encrypt_str = encryptStr(PACKAGE8);
         System.out.println(encrypt_str);
         decrypt_str = decryptStr(encrypt_str);
         System.out.println(decrypt_str);
 
-        System.out.println("{");
-        for (int i = 0; i < SN_AR.length; i++) {
-            System.out.println("\"" + encryptStr(SN_AR[i]) + "\",");
-        }
-        System.out.println("/");
-        System.out.println("}");
+
+        //                System.out.println("{");
+        //                for (int i = 0; i < SN_AR.length; i++) {
+        //                    System.out.println("\"" + encryptStr(SN_AR[i]) + "\",");
+        //                }
+        //                System.out.println("/");
+        //                System.out.println("}");
 
 
     }
 
-    private static String SN = "M68X7033205S00246";
-    private static String[] SN_AR = {
-            "M68X7033205S00246",
-            "M68X7033205S00246",
-            "M68X7033205S00246"
-    };
+    private static String SN = "H7283033232301234";
 
+
+    //    private static String[] SN_AR = {
+    //            "M68X7033205S00246",
+    //            "M68X7033205S00246",
+    //            "M68X7033205S00246"
+    //    };
+
+    // TIME: 2020/10/22 15:25 足莲德 V10 合计15台V10转行业系统
+    private static String[] SN_AR = {
+            "m62v0033209c00040"
+    };
 
     private static String PACKAGE = "com.jmgo.hotel";
     private static String PACKAGE1 = "com.jmgo.launcher.x";
@@ -86,8 +105,14 @@ public class MyClass {
     private static String PACKAGE3 = "com.jmgo.launcher";
 
     private static String PACKAGE4 = "com.hlauncher.jmgo";
+
     private static String PACKAGE5 = "com.iptv.laucher";
-    private static String PACKAGE6 = "com.hassmedia.cloudlauncher";
+
+    private static String PACKAGE6 = "com.hhzt.iptv";
+
+    // TIME: 2020/12/14 18:21 携旅
+    private static String PACKAGE7 = "com.travelink.upgrade";
+    private static String PACKAGE8 = "com.ts.launcher";
 
 
     private static String getstrTo16(String str) {
